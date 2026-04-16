@@ -1,5 +1,16 @@
 # Loadable Kernel Module – Software PWM (GPIO12)
 
+/*
+
+* dimmer-rpi4.c
+* Programa referente à ficha PL5 – Exercício III
+* Implementação de um Loadable Kernel Module (LKM) para geração de PWM por software no GPIO12 do Raspberry Pi 4
+* Permite controlo do duty cycle (0–100%) através de um character device (/dev/dimmer)
+* Created: 16/04/2026
+* Author : Ines Santos (1140623), André Pinto (1200209) e Gabriel Lopes (1252630)
+  */
+
+
 ## 1. Objetivo
 
 O objetivo deste trabalho é compreender e implementar um **Loadable Kernel Module (LKM)** em Linux, aplicado ao controlo de hardware no Raspberry Pi 4.
