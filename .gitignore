@@ -5,6 +5,8 @@
 *.mod
 *.mod.c
 *.mod.o
+*.out
+*.cmd
 
 #Kernel modules nbuild system
 Module.symvers
@@ -14,6 +16,9 @@ modules.order
 
 *.tmp
 *.cmd
+*.order
+*.c.swp
+*.mod.*
 
 # kernel source
 linux-source-*
@@ -24,3 +29,6 @@ linux-source-*
 
 # LOGS
 dmesg.log
+
+#kernel build leftovers
+.tmp_versions/

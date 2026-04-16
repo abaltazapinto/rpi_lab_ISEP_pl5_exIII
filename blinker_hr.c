@@ -6,26 +6,32 @@
 
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Blinker");
+MODULE_DESCRIPTION("SOFTWARE PWM on GPIO12 for Raspberry PI 4");
 
 #define RWBUFSIZE 32
-#define MODULE_NAME   "Blinker" 
-#define DEVFILE_NAME  "blinker"  
+#define MODULE_NAME   "dimmer-rpi4"
+#define DEVFILE_NAME  "dimmer"
 #define CLASS_NAME  "PGSCE-DISEM"
 
 static int blinker_major;
 static struct hrtimer my_timer;
+
+// PWM State
+static unsigned int duty_cycle_setpoint = 50; // parametro de escolha entre 0 e 100 fui com 50
+static unsigned int duty_cycle = 0; // start comeco do periodo pwm
+static unsigned int new_period = 1; // 1 comeco e depois 0 vai ser metade do periodo
+static ktime_t blink_delay; // proximo intervalo para programar no hrtimer
+
+//debug visibilidade logica
 static unsigned char led_status = 0;
-static unsigned long blink_delay_nsec;
-static unsigned long blink_delay_sec;
-static ktime_t blink_delay;
+
 static int device_open = 0;
 static struct device* blinker_device;
 static struct class* blinker_class;
 
-//check in /sys/module/blinker/parameters/led_status
-module_param(led_status, byte, 0444);
-MODULE_PARM_DESC(led_status, "Port status");
+// duty cycle parameter required by the exercise
+module_param(duty_cycle_setpoint, uint, 0644);
+MODULE_PARM_DESC(duty_cycle_setpoint, "PWM duty cycle in percent (0...100)");
 
 module_param(blink_delay_nsec, ulong, 0444);
 MODULE_PARM_DESC(blink_delay_nsec , "Number of nanoseconds of delay (to be added to blink_delay_sec)");
