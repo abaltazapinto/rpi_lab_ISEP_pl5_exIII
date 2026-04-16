@@ -1,5 +1,5 @@
-obj-m += blinker-rpi4.o
-blinker-rpi4-objs := blinker.o gpio.o
+obj-m += dimmer-rpi4.o
+dimmer-rpi4-objs := dimmer.o gpio.o
 
 KERNEL_DIR = /lib/modules/$(shell uname -r)/build
 CCC_ARGS = ARCH=arm64
