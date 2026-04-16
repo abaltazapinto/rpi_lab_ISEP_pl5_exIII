@@ -134,3 +134,41 @@ new_period           → flag de estado (1 = início de período)
 6) Remove the module.
 
 
+##########################################################################################
+
+ Timer 
+
+ my_timer_func -> calcula ON /OFF
+
+ Hardware
+
+ gpio12set(1/0)
+
+ ao fazer o exercicio da para ver os diferentes valores de duty cycle vao dar mais (100) ou menos (0) de duty cycle e briulho no led. 
+
+ echo 0 | sudo tee /dev/dimmer
+echo 100 | sudo tee /dev/dimmer
+ ###################################################################
+ 
+ 
+ ## Environment
+
+- Board: Raspberry Pi 4 (BCM2711)
+- OS: Raspberry Pi OS
+- Kernel: 6.12.75+rpt-rpi-v8
+
+## GPIO
+
+- PWM implemented on GPIO12
+- Connected to LED + resistor (~220Ω) to GND
+
+## Build
+
+```bash
+make
+```
+
+## Load Module / remove
+
+sudo insmod dimmer-rpi14.ko / sudo rmmod dimmer-rpi14.ko
+
